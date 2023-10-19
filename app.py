@@ -2,9 +2,9 @@ import numpy as np
 from PIL import Image
 from tensorflow.keras.models import load_model
 from flask import Flask, render_template, request, jsonify
-from werkzeug.utils import secure_filename
 from flask_cors import CORS
 import os
+
 def getPrediction(filename):
    
     dic = {0 : 'Covid', 1 : 'Healthy', 2 : 'Lung Tumor', 3 : 'Common Pneumonia'}
@@ -51,7 +51,7 @@ def submit_file():
     if file.filename == '':
       return jsonify({'message': 'No selected file'}), 400
     if file:
-      filename = secure_filename(file.filename)
+      filename = (file.filename)
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
       full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
       label = getPrediction(filename)
@@ -60,3 +60,6 @@ def submit_file():
 @app.route('/', methods=[ 'GET'])
 def load():
       return 'Hello world', 200
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=True)
