@@ -1,6 +1,5 @@
 import numpy as np
 from PIL import Image
-from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras.models import load_model
 from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
