@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -63,5 +63,5 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'ai-flask'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_935b5b691d524260be704944e49b041c }}
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_917847582B8245E1B001D8C6644BB5C5 }}
